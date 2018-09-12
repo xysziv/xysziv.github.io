@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next mist use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="获取资源路径的区别 * 1. Class.getResourceAsStream(String path) ： ​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。 ​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。   * 2. Class.getClassLoader.getR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/09/11/hello-world/index.html">
+<meta property="og:title" content="之前零星的东西">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/之前零星的东西/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="获取资源路径的区别 * 1. Class.getResourceAsStream(String path) ： ​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。 ​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。   * 2. Class.getClassLoader.getR">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-11T11:44:26.361Z">
+<meta property="og:updated_time" content="2018-09-12T13:15:05.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="之前零星的东西">
+<meta name="twitter:description" content="获取资源路径的区别 * 1. Class.getResourceAsStream(String path) ： ​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。 ​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。   * 2. Class.getClassLoader.getR">
 
 
 
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/11/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/12/之前零星的东西/"/>
 
 
 
 
 
-  <title>Hello World | Hexo</title>
+  <title>之前零星的东西 | Hexo</title>
   
 
 
@@ -190,6 +190,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -232,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/11/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/之前零星的东西/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">之前零星的东西</h1>
         
 
         <div class="post-meta">
@@ -261,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-11T19:44:26+08:00">
-                2018-09-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T21:14:25+08:00">
+                2018-09-12
               </time>
             
 
@@ -299,15 +329,17 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="获取资源路径的区别"><a href="#获取资源路径的区别" class="headerlink" title="获取资源路径的区别"></a>获取资源路径的区别</h2><p> <strong>* 1. Class.getResourceAsStream(String path) ：</strong></p>
+<p>​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。</p>
+<p>​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。</p>
+<p>  <strong>* 2. Class.getClassLoader.getResourceAsStream(String path) ：</strong></p>
+<p>​     默认则是从ClassPath根下获取，path不能以’/‘开头，最终是由ClassLoader获取资源。</p>
+<p>  <strong>* 3. ServletContext. getResourceAsStream(String path)：</strong></p>
+<p>​     默认从WebAPP根目录下取资源，Tomcat下path是否以’/‘开头无所谓，当然这和具体的容器实现有关。</p>
+<h2 id="mybatis个别疑惑"><a href="#mybatis个别疑惑" class="headerlink" title="mybatis个别疑惑"></a>mybatis个别疑惑</h2><p>在预编译模式下，传入具体类型参数（比如string），然后参数用$接收，会运行出错，提示信息为no getter for class java.lang.String。用#接收没问题；或者将传入的string放入一map中。</p>
+<p>好像mybatis的parameterType不起什么作用似的。。。接口传过来的参数会自动根据参数对象的属性名去映射到sql中，而不是根据parametertype定义的去映射。。。。就是说，dao传参与parametertype不一样时，绕过了parametertype？</p>
+<h2 id="ie8下的easyui"><a href="#ie8下的easyui" class="headerlink" title="ie8下的easyui"></a>ie8下的easyui</h2><p>今天发现一个小问题，页面用布局时，如果直接在body上布局，页面初始化时会刷不出来，所以在body下加了个div，然后自适应body就可以了</p>
+<h2 id="easyui一个页面引入多个datagrid的一个小问题"><a href="#easyui一个页面引入多个datagrid的一个小问题" class="headerlink" title="easyui一个页面引入多个datagrid的一个小问题"></a>easyui一个页面引入多个datagrid的一个小问题</h2><p>一次载入了三个datagrid，分别放在北、中间、南布局中，各布局里嵌套了个panel。目前的一个小问题是，三个布局初始化时重合了，最后尝试在南北布局加了margin-bottom: 1px后解决问题。原因待发现</p>
 
       
     </div>
@@ -332,14 +364,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/12/开始/" rel="next" title="开始">
+                <i class="fa fa-chevron-left"></i> 开始
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/12/开始/" rel="prev" title="开始">
-                开始 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/12/乱码与编码/" rel="prev" title="乱码与编码">
+                乱码与编码 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -417,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -454,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取资源路径的区别"><span class="nav-number">1.</span> <span class="nav-text">获取资源路径的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis个别疑惑"><span class="nav-number">2.</span> <span class="nav-text">mybatis个别疑惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ie8下的easyui"><span class="nav-number">3.</span> <span class="nav-text">ie8下的easyui</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easyui一个页面引入多个datagrid的一个小问题"><span class="nav-number">4.</span> <span class="nav-text">easyui一个页面引入多个datagrid的一个小问题</span></a></li></ol></div>
             
 
           </div>
@@ -492,7 +528,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 

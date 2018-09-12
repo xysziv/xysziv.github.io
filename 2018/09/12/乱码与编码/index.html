@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Tomcat是否配置正确： （1）Tomcat 的 conf 下的server.xml文件中将 &amp;lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” /&amp;gt; 里添加上后面3个编码的设置 &amp;lt; Connector port=”8080” protocol=”H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="乱码与编码">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/乱码与编码/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Tomcat是否配置正确： （1）Tomcat 的 conf 下的server.xml文件中将 &amp;lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” /&amp;gt; 里添加上后面3个编码的设置 &amp;lt; Connector port=”8080” protocol=”H">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-12T13:46:42.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="乱码与编码">
+<meta name="twitter:description" content="Tomcat是否配置正确： （1）Tomcat 的 conf 下的server.xml文件中将 &amp;lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” /&amp;gt; 里添加上后面3个编码的设置 &amp;lt; Connector port=”8080” protocol=”H">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/12/乱码与编码/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>乱码与编码 | Hexo</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/乱码与编码/" itemprop="url">乱码与编码</a></h1>
+          <h1 class="post-title" itemprop="name headline">乱码与编码</h1>
         
 
         <div class="post-meta">
@@ -328,9 +329,7 @@
       
 
       
-        
-          
-            <p>Tomcat是否配置正确：</p>
+        <p>Tomcat是否配置正确：</p>
 <p>（1）Tomcat 的 conf 下的server.xml文件中将</p>
 <p>&lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” /&gt;</p>
 <p>里添加上后面3个编码的设置</p>
@@ -397,8 +396,6 @@
 <p>总结：<br>1、URL中的PathInfo和QueryString字符串的编码和解码是由浏览器和应用服务器的配置决定的，我们的程序不能设置，不要期望用request.setCharacterEncoding()方法能设置URL中参数值解码时的字符集。<br>所以我们建议URL中不要使用中文等非ASCII字符，如果含有非ASCII字符的话要使用URLEncode编码一下，比如：<br><a href="http://localhost:8080/example1/example/" target="_blank" rel="noopener">http://localhost:8080/example1/example/</a>中国<br>正确的写法：<br><a href="http://localhost:8080/example1/example/%E4%B8%AD%E5%9B%BD" target="_blank" rel="noopener">http://localhost:8080/example1/example/中国</a><br>并且我们建议URL中不要在PathInfo和QueryString同时使用非ASCII字符，比如<br><a href="http://localhost:8080/example1/example/" target="_blank" rel="noopener">http://localhost:8080/example1/example/</a>中国?name=中国<br>原因很简单：不同浏览器对URL中PathInfo和QueryString编码时采用的字符集不同，但应用服务器对URL通常会采用相同的字符集来解码。</p>
 <p>2、我们建议URL中的URL Encode编码的字符集和网页的contentType的字符集采用相同的字符集，这样程序的实现就很简单，不用做复杂的编码转换。</p>
 </context>
-          
-        
       
     </div>
     
@@ -415,142 +412,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/之前零星的东西/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/之前零星的东西/" itemprop="url">之前零星的东西</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T21:14:25+08:00">
-                2018-09-12
-              </time>
+              <a href="/2018/09/12/之前零星的东西/" rel="next" title="之前零星的东西">
+                <i class="fa fa-chevron-left"></i> 之前零星的东西
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="获取资源路径的区别"><a href="#获取资源路径的区别" class="headerlink" title="获取资源路径的区别"></a>获取资源路径的区别</h2><p> <strong>* 1. Class.getResourceAsStream(String path) ：</strong></p>
-<p>​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。</p>
-<p>​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。</p>
-<p>  <strong>* 2. Class.getClassLoader.getResourceAsStream(String path) ：</strong></p>
-<p>​     默认则是从ClassPath根下获取，path不能以’/‘开头，最终是由ClassLoader获取资源。</p>
-<p>  <strong>* 3. ServletContext. getResourceAsStream(String path)：</strong></p>
-<p>​     默认从WebAPP根目录下取资源，Tomcat下path是否以’/‘开头无所谓，当然这和具体的容器实现有关。</p>
-<h2 id="mybatis个别疑惑"><a href="#mybatis个别疑惑" class="headerlink" title="mybatis个别疑惑"></a>mybatis个别疑惑</h2><p>在预编译模式下，传入具体类型参数（比如string），然后参数用$接收，会运行出错，提示信息为no getter for class java.lang.String。用#接收没问题；或者将传入的string放入一map中。</p>
-<p>好像mybatis的parameterType不起什么作用似的。。。接口传过来的参数会自动根据参数对象的属性名去映射到sql中，而不是根据parametertype定义的去映射。。。。就是说，dao传参与parametertype不一样时，绕过了parametertype？</p>
-<h2 id="ie8下的easyui"><a href="#ie8下的easyui" class="headerlink" title="ie8下的easyui"></a>ie8下的easyui</h2><p>今天发现一个小问题，页面用布局时，如果直接在body上布局，页面初始化时会刷不出来，所以在body下加了个div，然后自适应body就可以了</p>
-<h2 id="easyui一个页面引入多个datagrid的一个小问题"><a href="#easyui一个页面引入多个datagrid的一个小问题" class="headerlink" title="easyui一个页面引入多个datagrid的一个小问题"></a>easyui一个页面引入多个datagrid的一个小问题</h2><p>一次载入了三个datagrid，分别放在北、中间、南布局中，各布局里嵌套了个panel。目前的一个小问题是，三个布局初始化时重合了，最后尝试在南北布局加了margin-bottom: 1px后解决问题。原因待发现</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -560,129 +443,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/开始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/开始/" itemprop="url">开始</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T10:09:36+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -690,6 +455,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -710,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -753,6 +531,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -886,6 +680,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
