@@ -334,17 +334,18 @@
       
         
           
-            <p>一、</p>
-<p>a.jsp页面，只有一个叫“点我”的按钮。测试后发现:</p>
-<p>1.pageEncoding=”utf-8”的时候，出来的页面上“点我”按钮才不会乱码，设置为“gbk”也会乱码；</p>
-<p>2.如果没有设置pageEncoding时，设置charset=utf-8也可以防止乱码，同样设置gbk会乱码；</p>
-<p>结合1,2知道:在jsp页面运行成为html进行展示时，pageencoding先起作用，未设置pageencoding时才按照charset的设置，并且未设置charset时会按照已设置的pageencoding来给charset设置同样的编码。</p>
-<p>3.如果pageencoding与charset都未设置，可能就会按操作系统编码来设置这俩值，比如我的操作系统编码为gbk，运行jsp生成的页面出现乱码，跟之前pageencoding设置为“gbk”时是一样的乱码。</p>
-<p>二、</p>
-<p>“点我”按钮指向一个b.jsp页面，链接为href=b.jsp?a=中国，b页面会用request.getParameter()获取传递的参数(tomcat环境下，已设置server.xml文件中Connector标签的URIEncoding属性=”utf-8”)，然后弹框显示中文参数a。</p>
-<p>这时候发现只有b页面的charset设置为gbk、utf-8等支持中文的字符编码时，弹框才可以正确显示“中国”这个中文字符，而调试java后台发现一直可以获取到正确的中文(因为tomcat设置了get请求与链接用正确的utf-8格式解码。)</p>
-
-          
+          一、
+a.jsp页面，只有一个叫“点我”的按钮。测试后发现:
+1.pageEncoding=”utf-8”的时候，出来的页面上“点我”按钮才不会乱码，设置为“gbk”也会乱码；
+2.如果没有设置pag
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/13/pageEncoding与charset/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -462,74 +463,17 @@
       
         
           
-            <p>Tomcat是否配置正确：</p>
-<p>（1）Tomcat 的 conf 下的server.xml文件中将</p>
-<p>&lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” /&gt;</p>
-<p>里添加上后面3个编码的设置</p>
-<p>&lt; Connector port=”8080” protocol=”HTTP/1.1”  connectionTimeout=”20000” redirectPort=”8443” useBodyEncodingForURI=”true” IEncoding=”utf-8” URIEncoding=”utf-8”/&gt;</p>
-<p>（2）</p>
-<p>然后在servlet中配置如下：</p>
-<p>如果你用的是 post方式</p>
-<p>解决方案：</p>
-<p>request.setCharacterEncoding(“utf-8”);</p>
-<p>response.setCharacterEncoding( “utf-8” );</p>
-<p>get方式</p>
-<p>String string = request。getParamers(“”);</p>
-<p>String = new String(string.getBytes(“ISO8859-1”,”utf-8”));</p>
-<p>（3）jsp页面中 pageEncoding=”UTF-8”</p>
-<p>（4）如果你用的是Eclipse或者MyEclipse的话，那么你在window<br>下的preferences中的左上角的输入框中输入spelling 在spelling这个页面中看看Encoding<br>默认是否设置为utf-8</p>
-<p>资料2:</p>
-<p>1、pageEncoding=”UTF-8”的作用是设置JSP编译成Servlet时使用的编码。 </p>
-<p>2、contentType=”text/html;charset=UTF-8”的作用是指定对服务器响应进行重新编码的编码。 </p>
-<p>3、request.setCharacterEncoding(“UTF-8”)的作用是设置对客户端请求进行重新编码的编码。</p>
-<p>4、response.setCharacterEncoding(“UTF-8”)的作用是指定对服务器响应进行重新编码的编码。 </p>
-<p>response.setCharacterEncoding(“UTF-8”)的作用是指定对服务器响应进行重新编码的编码。同时，浏览器也是根据这个参数来对其接收到的数据进行重新编码（或者称为解码）。所以在无论你在JSP中设置response.setCharacterEncoding (“UTF-8”)或者response.setCharacterEncoding(“GBK”)，浏览器均能正确显示中文（前提是你发送到浏览器的数据编码是正确的，比如正确设置了pageEncoding参数等）。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于发送数据，服务器按照response.setCharacterEncoding—contentType—pageEncoding的优先顺序，对要发送的数据进行编码。 </p>
-<p>对于接收数据，要分三种情况。一种是浏览器直接用URL提交的数据，另外两种是用表单的GET和POST方式提交的数据。</p>
-<p>对于表单中POST方式提交的数据，只要在接收数据的JSP中正确request.setCharacterEncoding参数，即将对客户端请求进行重新编码的编码设置成浏览器编码，就可以保证得到的参数编码正确。有写读者可能会问，那如何得到浏览器编码呢？上面我们提过了，在默认请情况下，浏览器编码就是你在响应该请求的JSP页面中response.setCharacterEncoding设置的值。所以对于POST表单提交的数据，在获得数据的JSP页面中request.setCharacterEncoding要和生成提交该表单的JSP页面的 response.setCharacterEncoding设置成相同的值。 </p>
-<p>对于URL提交的数据和表单中GET方式提交的数据，在接收数据的JSP中设置request.setCharacterEncoding参数是不行的，因为在Tomcat5.0中，默认情况下使用ISO- 8859-1对URL提交的数据和表单中GET方式提交的数据进行重新编码（解码），而不使用该参数对URL提交的数据和表单中GET方式提交的数据进行重新编码（解码）。要解决该问题，应该在Tomcat的配置文件的Connector标签中设置useBodyEncodingForURI或者 URIEncoding属性，其中useBodyEncodingForURI参数表示是否用request.setCharacterEncoding 参数对URL提交的数据和表单中GET方式提交的数据进行重新编码，在默认情况下，该参数为false（Tomcat4.0中该参数默认为true）； URIEncoding参数指定对所有GET方式请求（包括URL提交的数据和表单中GET方式提交的数据）进行统一的重新编码（解码）的编码。 URIEncoding和useBodyEncodingForURI区别是，URIEncoding是对所有GET方式的请求的数据进行统一的重新编码（解码），而useBodyEncodingForURI则是根据响应该请求的页面的request.setCharacterEncoding参数对数据进行的重新编码（解码），不同的页面可以有不同的重新编码（解码）的编码。所以对于URL提交的数据和表单中GET方式提交的数据，可以修改 URIEncoding参数为浏览器编码或者修改useBodyEncodingForURI为true，并且在获得数据的JSP页面中 request.setCharacterEncoding参数设置成浏览器编码。</p>
-<p>useBodyEncodingForURI=”true”是设置get请求与链接传参的编码按照post请求设置的编码(post通过request.setCharacterEncoding()方法指定)；URIEncoding=”UTF-8”是设置get请求与链接传参的编码。刚测试发现个问题:设置useBodyEncodingForURI后会覆盖掉URIEncoding的设置，所以要避免二者同时设置。</p>
-<p>以下内容是我转载的，觉得挺好的。。。。</p>
-<p>一、问题：<br>编码问题是JAVA初学者在web开发过程中经常会遇到问题，网上也有大量相关的文章介绍，但其中很多文章并没有对URL中使用了中文等非ASCII的字 符造成服务器后台程序解析出现乱码的问题作出准确的解释和说明。本文将详细介绍由于在URL中使用了中文等非ASCII的字符造成乱码的问题。</p>
-<p>1、在URL中中文字符通常出现在以下两个地方：<br>(1)、Query String中的参数值，比如<a href="http://search.china.alibaba.com/search/offer_search.htm?keywords" target="_blank" rel="noopener">http://search.china.alibaba.com/search/offer_search.htm?keywords</a>=中国<br>(2)、servlet path，比如：<a href="http://search.china.alibaba.com/selloffer/" target="_blank" rel="noopener">http://search.china.alibaba.com/selloffer/</a>中国.html</p>
-<p>2、出现乱码问题的原因主要是以下几方面：<br>(1)、浏览器：我们的客户端（浏览器）本身并没有遵循URI编码的规范（<a href="http://www.w3.org/International/O-URL-code.html" target="_blank" rel="noopener">http://www.w3.org/International/O-URL-code.html</a>）。<br>(2)、Servlet服务器：Servlet服务器的没有正确配置。<br>(3)、开发人员并不了解Servlet的规范和API的含义。</p>
-<p>二、基础知识：</p>
-<p>1、一个http请求经过的几个环节：<br>浏览器(ie firefox)【get/post】————&gt;Servlet服务器——————————-&gt;浏览器显示<br>                               编码                 解码成unicode，然后将显示的内容编码        解码<br>(1) 浏览器把URL(以及post提交的内容)经过编码后发送给服务器。<br>(2) 这里的Servlet服务器实际上指的是由Servlet服务器提供的servlet实现ServletRequestWrapper，不同应用服务器的 servlet实现不同，这些servlet的实现把这些内容解码转换为unicode，处理完毕后，然后再把结果(即网页)编码返回给浏览器。<br>(3) 浏览器按照指定的编码显示该网页。</p>
-<p>当对字符串进行编码和解码的时候都涉及到字符集，通常使用的字符集为ISO8859-1、GBK、UTF-8、UNICODE。</p>
-<p>2、URL的组成:域名:端口/contextPath/servletPath/pathInfo?queryString</p>
-<p>说明：</p>
-<p>(1)、ContextPath是在Servlet服务器的配置文件中指定的。<br>对于weblogic：<br>contextPath是在应用的weblogic.xml中配置。<br> <context-root>/</context-root></p>
-<p>对于tomcat：<br>contextPath是在server.xml中配置。</p>
-<context path="/" docbase="D:/server/blog.war" debug="5" reloadable="true" crosscontext="true">
-
-<p>对于jboos：<br>contextPath是在应用的jboss-web.xml中配置。</p>
-<p><jboss-web><br>    <context-root>/</context-root><br></jboss-web></p>
-<p>(2)、ServletPath是在应用的web.xml中配置。</p>
-<p><servlet-mapping><br>    <servlet-name>Example</servlet-name><br>    <url-pattern>/example/*</url-pattern><br></servlet-mapping></p>
-<p>3、Servlet API<br>我们使用以下servlet API获得URL的值及参数。<br>request.getParameter(“name”);         // 获得queryString的参数值(来自于get和post)，其值经过Servlet服务器URL Decode过的<br>request.getPathInfo();                // 注意：pathinfo返回的字符串是经过Servlet服务器URL Decode过的。<br>requestURI = request.getRequestURI(); // 内容为：contextPath/servletPath/pathinfo 浏览器提交过来的原始数据，未被Servlet服务器URL Decode过。</p>
-<p>4、开发人员必须清楚的servlet规范：<br>(1) HttpServletRequest.setCharacterEncoding()方法 仅仅只适用于设置post提交的request body的编码而不是设置get方法提交的queryString的编码。该方法告诉应用服务器应该采用什么编码解析post传过来的内容。很多文章并没 有说明这一点。<br>(2) HttpServletRequest.getPathInfo()返回的结果是由Servlet服务器解码(decode)过的。<br>(3) HttpServletRequest.getRequestURI()返回的字符串没有被Servlet服务器decoded过。<br>(4) POST提交的数据是作为request body的一部分。<br>(5) 网页的Http头中ContentType(“text/html; charset=GBK”)的作用：<br>   (a) 告诉浏览器网页中数据是什么编码；<br>   (b) 表单提交时，通常浏览器会根据ContentType指定的charset对表单中的数据编码，然后发送给服务器的。<br>   这里需要注意的是：这里所说的ContentType是指http头的ContentType，而不是在网页中meta中的ContentType。</p>
-<p>三、下面我们分别从浏览器和应用服务器来举例说明：<br>URL：<a href="http://localhost:8080/example/" target="_blank" rel="noopener">http://localhost:8080/example/</a>中国?name=中国<br>汉字   编码      二进制表示<br>中国   UTF-8     0xe4 0xb8 0xad 0xe5 0x9b 0xbd[-28, -72, -83, -27, -101, -67]<br>中国   GBK       0xd6 0xd0 0xb9 0xfa[-42, -48, -71, -6]<br>中国   ISO8859-1 0x3f,0x3f[63, 63]信息失去</p>
-<p>(一)、浏览器<br>1、GET方式提交，浏览器会对URL进行URL encode，然后发送给服务器。<br>(1) 对于中文IE,如果在高级选项中选中总以UTF-8发送(默认方式)，则PathInfo是URL Encode是按照UTF-8编码,QueryString是按照GBK编码。<br><a href="http://localhost:8080/example/" target="_blank" rel="noopener">http://localhost:8080/example/</a>中国?name=中国<br>实际上提交是：<br>GET /example/中国?name=�й�</p>
-<p>(1) 对于中文IE,如果在高级选项中取消总以UTF-8发送，则PathInfo和QueryString是URL encode按照GBK编码。<br>实际上提交是：<br>GET /example/�й�?name=�й�</p>
-<p>(3) 对于中文firefox，则pathInfo和queryString都是URL encode按照GBK编码。<br>实际上提交是：<br>GET /example/�й�?name=�й�</p>
-<p>很显然，不同的浏览器以及同一浏览器的不同设置，会影响最终URL中PathInfo的编码。对于中文的IE和FIREFOX都是采用GBK编码QueryString。</p>
-<p>小结：解决方案：<br>1、URL中如果含有中文等非ASCII字符，则浏览器会对它们进行URLEncode。为了避免浏览器采用了我们不希望的编码，所以最好不要在URL中直接使用非ASCII字符，而采用URL Encode编码过的字符串%.<br>比如：<br>URL：<a href="http://localhost:8080/example/" target="_blank" rel="noopener">http://localhost:8080/example/</a>中国?name=中国<br>建议：<br>URL：<a href="http://localhost:8080/example/%EF%BF%BD%D0%B9%EF%BF%BD?name=%EF%BF%BD%D0%B9%EF%BF%BD" target="_blank" rel="noopener">http://localhost:8080/example/�й�?name=�й�</a></p>
-<p>2、我们建议URL中PathInfo和QueryString采用相同的编码，这样对服务器端处理的时候会更加简单。</p>
-<p>2、还有一个问题，我发现很多程序员并不明白URL Encode是需要指定字符集的。不明白的人可以看看这篇文档：<a href="http://gceclub.sun.com.cn/Java_Docs/html/zh_CN/api/java/net/URLEncoder.html" target="_blank" rel="noopener">http://gceclub.sun.com.cn/Java_Docs/html/zh_CN/api/java/net/URLEncoder.html</a></p>
-<p>2、 POST提交<br>        对于POST方式，表单中的参数值对是通过request body发送给服务器，此时浏览器会根据网页的ContentType(“text/html; charset=GBK”)中指定的编码进行对表单中的数据进行编码，然后发给服务器。<br>在服务器端的程序中我们可以通过Request.setCharacterEncoding() 设置编码，然后通过request.getParameter获得正确的数据。</p>
-<p>解决方案：<br>1、从最简单，所需代价最小来看，我们对URL以及网页中的编码使用统一的编码对我们来说是比较合适的。<br>如果不使用统一编码的话，我们就需要在程序中做一些编码转换的事情。这也是我们为什么看到有网络上大量的资料介绍如何对乱码进行处理，其中很多解决方案都只是一时的权宜之计，没有从根本上解决问题。</p>
-<p>(二)、Servlet服务器<br>        Servlet服务器实现的Servlet遇到URL和POST提交的数据中含有%的字符串，它会按照指定的字符集解码。下面两个Servlet方法返回的结果都是经过解码的：<br>request.getParameter(“name”);<br>request.getPathInfo();</p>
-<p>这里所说的”指定的字符集”是在应用服务器的配置文件中配置。</p>
-<p>(1) tomcat服务器<br>对于tomcat服务器，该文件是server.xml</p>
-<p><connector port="8080" protocol="HTTP/1.1" maxthreads="150" connectiontimeout="20000" redirectport="8443" uriencoding="GBK"><br>URIEncoding告诉服务器servlet解码URL时采用的编码。</connector></p>
-<p><connector port="8080" ...="" usebodyencodingforuri="true"><br>useBodyEncodingForURI告诉服务器解码URL时候需要采用request body指定的编码。</connector></p>
-<p>(2) weblogic服务器<br>对于weblogic服务器，该文件是weblogic.xml</p>
-<p><input-charset><br>  <java-charset-name>GBK</java-charset-name><br></input-charset></p>
-<p>(三)浏览器显示<br>        浏览器根据http头中的ContentType(“text/html; charset=GBK”)，指定的字符集来解码服务器发送过来的字节流。我们可以调用 HttpServletResponse.setContentType()设置http头的ContentType。</p>
-<p>总结：<br>1、URL中的PathInfo和QueryString字符串的编码和解码是由浏览器和应用服务器的配置决定的，我们的程序不能设置，不要期望用request.setCharacterEncoding()方法能设置URL中参数值解码时的字符集。<br>所以我们建议URL中不要使用中文等非ASCII字符，如果含有非ASCII字符的话要使用URLEncode编码一下，比如：<br><a href="http://localhost:8080/example1/example/" target="_blank" rel="noopener">http://localhost:8080/example1/example/</a>中国<br>正确的写法：<br><a href="http://localhost:8080/example1/example/%E4%B8%AD%E5%9B%BD" target="_blank" rel="noopener">http://localhost:8080/example1/example/中国</a><br>并且我们建议URL中不要在PathInfo和QueryString同时使用非ASCII字符，比如<br><a href="http://localhost:8080/example1/example/" target="_blank" rel="noopener">http://localhost:8080/example1/example/</a>中国?name=中国<br>原因很简单：不同浏览器对URL中PathInfo和QueryString编码时采用的字符集不同，但应用服务器对URL通常会采用相同的字符集来解码。</p>
-<p>2、我们建议URL中的URL Encode编码的字符集和网页的contentType的字符集采用相同的字符集，这样程序的实现就很简单，不用做复杂的编码转换。</p>
-</context>
-          
+          Tomcat是否配置正确：
+（1）Tomcat 的 conf 下的server.xml文件中将
+&lt; Connector port=”8080” protocol=”HTTP/1.1”  conn
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/12/乱码与编码/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -647,19 +591,16 @@
       
         
           
-            <h2 id="获取资源路径的区别"><a href="#获取资源路径的区别" class="headerlink" title="获取资源路径的区别"></a>获取资源路径的区别</h2><p> <strong>* 1. Class.getResourceAsStream(String path) ：</strong></p>
-<p>​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从ClassPath(Src根目录)根下获取。</p>
-<p>​     其只是通过path构造一个绝对路径，最终还是由ClassLoader获取资源。</p>
-<p>  <strong>* 2. Class.getClassLoader.getResourceAsStream(String path) ：</strong></p>
-<p>​     默认则是从ClassPath根下获取，path不能以’/‘开头，最终是由ClassLoader获取资源。</p>
-<p>  <strong>* 3. ServletContext. getResourceAsStream(String path)：</strong></p>
-<p>​     默认从WebAPP根目录下取资源，Tomcat下path是否以’/‘开头无所谓，当然这和具体的容器实现有关。</p>
-<h2 id="mybatis个别疑惑"><a href="#mybatis个别疑惑" class="headerlink" title="mybatis个别疑惑"></a>mybatis个别疑惑</h2><p>在预编译模式下，传入具体类型参数（比如string），然后参数用$接收，会运行出错，提示信息为no getter for class java.lang.String。用#接收没问题；或者将传入的string放入一map中。</p>
-<p>好像mybatis的parameterType不起什么作用似的。。。接口传过来的参数会自动根据参数对象的属性名去映射到sql中，而不是根据parametertype定义的去映射。。。。就是说，dao传参与parametertype不一样时，绕过了parametertype？</p>
-<h2 id="ie8下的easyui"><a href="#ie8下的easyui" class="headerlink" title="ie8下的easyui"></a>ie8下的easyui</h2><p>今天发现一个小问题，页面用布局时，如果直接在body上布局，页面初始化时会刷不出来，所以在body下加了个div，然后自适应body就可以了</p>
-<h2 id="easyui一个页面引入多个datagrid的一个小问题"><a href="#easyui一个页面引入多个datagrid的一个小问题" class="headerlink" title="easyui一个页面引入多个datagrid的一个小问题"></a>easyui一个页面引入多个datagrid的一个小问题</h2><p>一次载入了三个datagrid，分别放在北、中间、南布局中，各布局里嵌套了个panel。目前的一个小问题是，三个布局初始化时重合了，最后尝试在南北布局加了margin-bottom: 1px后解决问题。原因待发现</p>
-
-          
+          获取资源路径的区别 * 1. Class.getResourceAsStream(String path) ：
+​     path 不以’/‘开头时默认是从此类所在的包下取资源，以’/‘开头则是从C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/12/之前零星的东西/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -777,8 +718,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/12/开始/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
